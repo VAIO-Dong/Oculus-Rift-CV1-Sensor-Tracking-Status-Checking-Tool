@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Tracking/config"
+	Config "Tracking/config"
 	"Tracking/server"
 	"encoding/json"
 	"fmt"

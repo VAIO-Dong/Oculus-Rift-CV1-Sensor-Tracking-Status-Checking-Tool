@@ -1,7 +1,7 @@
 package server
 
 import (
-	"Tracking/Config"
+	Config "Tracking/config"
 	"bytes"
 	"fmt"
 	"github.com/labstack/echo"
