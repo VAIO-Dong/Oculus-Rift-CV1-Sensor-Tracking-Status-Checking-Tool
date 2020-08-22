@@ -1,0 +1,103 @@
+﻿body {
+       background-color: transparent;
+}
+
+.panel{
+	position:absolute;
+	width: 226px;
+	border-radius: 5px;
+	height: 116px;
+	background: #2a2e33;
+	box-shadow: 0px 0px 5px #333333;
+}
+
+#Sensor1{
+	width: 32px;
+	height: 32px;
+	margin-left: 15px;
+	margin-top: 15px;
+	position: absolute;
+	background-image: url(/static/img/cv1_camera_ready_1.png);
+	background-repeat: no-repeat;
+}
+
+#LTouch1{
+	width: 32px;
+	height: 32px;
+	margin-left: 66px;
+	margin-top: 15px;
+	position: absolute;
+	background-image: url(/static/img/cv1_left_controller_ready.png);
+	background-repeat: no-repeat;
+}
+
+#Headset1{
+	width: 50px;
+	height: 32px;
+	margin-left: 110px;
+	margin-top: 15px;
+	position: absolute;
+	background-image: url(/static/img/cv1_headset_ready.png);
+	background-repeat: no-repeat;
+}
+
+#line1{
+	width: 90%;
+	height: 0;
+	border: 0;
+	margin-top: 57px;
+	margin-left: 12px;
+	position: absolute;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#RTouch1{
+	width: 32px;
+	height: 32px;
+	margin-left: 172px;
+	margin-top: 15px;
+	position: absolute;
+	background-image: url(/static/img/cv1_right_controller_ready.png);
+	background-repeat: no-repeat;
+}
+
+#Sensor2{
+	width: 32px;
+	height: 32px;
+	margin-left: 15px;
+	margin-top: 70px;
+	position: absolute;
+	background-image: url(/static/img/cv1_camera_ready_2.png);
+	background-repeat: no-repeat;
+}
+
+#LTouch2{
+	width: 32px;
+	height: 32px;
+	margin-left: 66px;
+	margin-top: 70px;
+	position: absolute;
+	background-image: url(/static/img/cv1_left_controller_ready.png);
+	background-repeat: no-repeat;
+}
+
+#Headset2{
+	width: 50px;
+	height: 32px;
+	margin-left: 110px;
+	margin-top: 70px;
+	position: absolute;
+	background-image: url(/static/img/cv1_headset_ready.png);
+	background-repeat: no-repeat;
+}
+
+#RTouch2{
+	width: 32px;
+	height: 32px;
+	margin-left: 172px;
+	margin-top: 70px;
+	position: absolute;
+	background-image: url(/static/img/cv1_right_controller_ready.png);
+	background-repeat: no-repeat;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>Oculus Rift CV1 传感器追踪状态</title>
+	<link rel="stylesheet" media="screen" href="/static/css/style.css?v=0.0.1">
+	<script type="text/javascript" src="/static/js/jquery.js"></script>
+	<!-- 后端:航空战术先驱 前端:VAIO_Dong -->
+</head>
+
+<body>
+	<div class="panel">
+		<div id="Sensor1"></div>
+		<div id="LTouch1"></div>
+		<div id="Headset1"></div>
+		<div id="RTouch1"></div>
+		<div id="line1"></div>
+		<div id="Sensor2"></div>
+		<div id="LTouch2"></div>
+		<div id="Headset2"></div>
+		<div id="RTouch2"></div>
+	</div>
+
+	<script>
+	window.onload=function (){
+		var int=self.setInterval("updateicon()",100)
+	}
+
+	function updateicon(){
+		$.getJSON("{{.}}",function(result){
+			$.each(result, function(key,value){
+			//console.log(result.Data)
+				if (result.Data[1]['headset'] === true){
+					document.getElementById('Headset1').style.backgroundImage='url(/static/img/cv1_headset_caped.png)'
+				};
+				if (result.Data[1]['headset'] === false){
+					document.getElementById('Headset1').style.backgroundImage='url(/static/img/cv1_headset_ready.png)'
+				};
+				if (result.Data[1]['ltouch'] === true){
+					document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_caped.png)'
+				};
+				if (result.Data[1]['ltouch'] === false){
+					document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_ready.png)'
+				};
+				if (result.Data[1]['rtouch'] === true){
+					document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controlle_caped.png)'
+				};
+				if (result.Data[1]['rtouch'] === false){
+					document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controller_ready.png)'
+				};
+				if (result.Data[2]['headset'] === true){
+					document.getElementById('Headset2').style.backgroundImage='url(/static/img/cv1_headset_caped.png)'
+				};
+				if (result.Data[2]['headset'] === false){
+					document.getElementById('Headset2').style.backgroundImage='url(/static/img/cv1_headset_ready.png)'
+				};
+				if (result.Data[2]['ltouch'] === true){
+					document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_caped.png)'
+				};
+				if (result.Data[2]['ltouch'] === false){
+					document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_ready.png)'
+				};
+				if (result.Data[2]['rtouch'] === true){
+					document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controlle_caped.png)'
+				};
+				if (result.Data[2]['rtouch'] === false){
+					document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controller_ready.png)'
+				};
+			});
+		});
+	};
+	</script>
+</body>
+</html>
