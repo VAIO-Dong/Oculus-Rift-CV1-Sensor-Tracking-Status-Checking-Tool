@@ -2,6 +2,7 @@ package main
 
 import (
 	Config "Tracking/config"
+	"Tracking/logger"
 	"Tracking/server"
 	"encoding/json"
 	"fmt"
@@ -27,8 +28,13 @@ func IsExist(path string) bool {
 }
 
 func main() {
-	defer func() { select {} }()
-
+	logger.LogTOfile("./log.txt")
+	defer func() {
+		if err := recover(); err != nil {
+			logger.PrintFatal(fmt.Sprintf("%+v", err))
+			select {}
+		}
+	}()
 	config := Config.Config{
 		DeviceCachePath: os.Getenv("LOCALAPPDATA") + "\\Oculus\\DeviceCache.json",
 		Url:             "/SensorStatus",
@@ -52,9 +58,18 @@ func main() {
 
 	go server.InitEcho(NewDevice, config)
 	go listen(*watch, NewDevice, config)
+
+	logger.PrintInfo("init ok")
+	select {}
 }
 
 func listen(watch fsnotify.Watcher, target *server.AllDeviceInfo, config Config.Config) {
+	defer func() {
+		if err := recover(); err != nil {
+			logger.PrintFatal(fmt.Sprintf("%+v", err))
+		}
+	}()
+
 	for {
 		select {
 		case ev := <-watch.Events:
@@ -63,6 +78,8 @@ func listen(watch fsnotify.Watcher, target *server.AllDeviceInfo, config Config.
 				//	log.Println("创建文件 : ", ev.Name)
 				//}
 				if ev.Op&fsnotify.Write == fsnotify.Write {
+					defer target.Mutex.Unlock()
+					target.Mutex.Lock()
 					readjson(config.DeviceCachePath, target)
 					//log.Println("写入文件 : ", ev.Name)
 				}

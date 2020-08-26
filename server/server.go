@@ -2,6 +2,7 @@ package server
 
 import (
 	Config "Tracking/config"
+	"Tracking/logger"
 	"bytes"
 	"fmt"
 	"github.com/labstack/echo"
@@ -10,10 +11,12 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"sync"
 )
 
 type AllDeviceInfo struct {
 	Devices []map[string]interface{} `json:"devices"`
+	Mutex   sync.Mutex
 }
 
 type DataPack struct {
@@ -25,6 +28,12 @@ var config Config.Config
 var target *AllDeviceInfo
 
 func InitEcho(t *AllDeviceInfo, Setting Config.Config) {
+	defer func() {
+		if err := recover(); err != nil {
+			logger.PrintFatal(fmt.Sprintf("%+v", err))
+		}
+	}()
+
 	e := echo.New()
 	config = Setting
 	target = t
@@ -55,6 +64,12 @@ func InitPage(api string) {
 }
 
 func StatusApi(c echo.Context) error {
+	defer func() {
+		if err := recover(); err != nil {
+			logger.PrintFatal(fmt.Sprintf("%+v", err))
+		}
+	}()
+
 	c.Response().Header().Set("Access-Control-Allow-Origin", "*")
 	var dict = make(map[string]interface{})
 	var data DataPack
@@ -63,6 +78,8 @@ func StatusApi(c echo.Context) error {
 		println("not valid path set!")
 		os.Exit(0)
 	}
+	defer target.Mutex.Unlock()
+	target.Mutex.Lock()
 
 	for _, v := range target.Devices {
 
