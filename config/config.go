@@ -9,10 +9,10 @@ import (
 )
 
 type Config struct {
-	DeviceCachePath string         `json:"path"`
-	Url             string         `json:"url"`
-	Host            string         `json:"host"`
-	DeviceId        map[string]int `json:"device_id"`
+	DeviceCachePath string            `json:"path"`
+	Url             string            `json:"url"`
+	Host            string            `json:"host"`
+	DeviceId        map[string]string `json:"device_id"`
 }
 
 func NewConfig(Config Config) {
@@ -34,7 +34,9 @@ func NewConfig(Config Config) {
 			log.Fatalln("Is the format wrong?")
 		}
 
-		Config.DeviceId[device_id] = i
+		identification := "sensor%d"
+
+		Config.DeviceId[device_id] = fmt.Sprintf(identification, i)
 	}
 	b, _ := json.Marshal(Config)
 	_, _ = f.Write(b)

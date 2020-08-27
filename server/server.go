@@ -10,7 +10,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
 	"sync"
 )
 
@@ -37,7 +36,7 @@ func InitEcho(t *AllDeviceInfo, Setting Config.Config) {
 	e := echo.New()
 	config = Setting
 	target = t
-	api := "/api/" + config.Url
+	api := "/api" + config.Url
 
 	InitPage(api)
 	e.Static("/static", "static")
@@ -83,14 +82,22 @@ func StatusApi(c echo.Context) error {
 
 	for _, v := range target.Devices {
 
-		if v["type"] != "sensor" {
-			continue
-		}
-		for Uid, Uintid := range config.DeviceId {
-			if Uid == v["id"] {
-				i := strconv.Itoa(Uintid)
-				dict[i] = v["visibility"].(map[string]interface{})
+		switch v["subtype"] {
+		case "unknown":
+			if v["type"] != "sensor" {
+				continue
 			}
+
+			for Uid, indexID := range config.DeviceId {
+				if Uid == v["id"] {
+					dict[indexID] = v["visibility"].(map[string]interface{})
+					dict[indexID].(map[string]interface{})["connectionState"] = v["connectionState"]
+				}
+			}
+		case "ltouch":
+			dict["ltouch"] = map[string]interface{}{"connectionState": v["connectionState"], "batteryState": v["batteryState"]}
+		case "rtouch":
+			dict["rtouch"] = map[string]interface{}{"connectionState": v["connectionState"], "batteryState": v["batteryState"]}
 		}
 	}
 

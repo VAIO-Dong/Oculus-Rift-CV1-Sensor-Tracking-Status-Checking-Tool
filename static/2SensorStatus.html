@@ -27,44 +27,97 @@
 	}
 
 	function updateicon(){
-		$.getJSON("{{.}}",function(result){
+		$.getJSON("/SensorStatus",function(result){
 			$.each(result, function(key,value){
-			//console.log(result.Data)
-				if (result.Data[1]['headset'] === true){
-					document.getElementById('Headset1').style.backgroundImage='url(/static/img/cv1_headset_caped.png)'
+				//console.log(result.Data)
+				if (result.Data[sensor1]['connectionState'] === connected) {
+					document.getElementById('Sensor1').style.backgroundImage='url(/static/img/cv1_camera_ready_1.png)'
+					if (result.Data[sensor1]['headset'] === true) {
+						document.getElementById('Headset1').style.backgroundImage='url(/static/img/cv1_headset_caped.png)'
+					} else {
+						document.getElementById('Headset1').style.backgroundImage='url(/static/img/cv1_headset_ready.png)'
+					};
+					if (result.Data[ltouch]['connectionState'] === connected) {
+						if (result.Data[ltouch]['batteryState'] > 50) {
+							if (result.Data[sensor1]['ltouch'] === true){
+								document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_caped.png)'
+							} else {
+								document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_ready.png)'
+							};
+						} else {
+							if (result.Data[sensor1]['ltouch'] === true){
+								document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_capped_low.png)'
+							} else {
+								document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_ready_low.png)'
+							};
+						};
+					} else {
+						document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_off.png)'
+					};
+					if (result.Data[rtouch]['connectionState'] === connected) {
+						if (result.Data[rtouch]['batteryState'] > 50) {
+							if (result.Data[sensor1]['rtouch'] === true){
+								document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controller_caped.png)'
+							} else {
+								document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controller_ready.png)'
+							};
+						} else {
+							if (result.Data[sensor1]['rtouch'] === true){
+								document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controller_capped_low.png)'
+							} else {
+								document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controller_ready_low.png)'
+							};
+						};
+					} else {
+						document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controller_off.png)'
+					};
+				} else {
+					document.getElementById('Sensor1').style.backgroundImage='url(/static/img/cv1_camera_1.png)'
 				};
-				if (result.Data[1]['headset'] === false){
-					document.getElementById('Headset1').style.backgroundImage='url(/static/img/cv1_headset_ready.png)'
-				};
-				if (result.Data[1]['ltouch'] === true){
-					document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_caped.png)'
-				};
-				if (result.Data[1]['ltouch'] === false){
-					document.getElementById('LTouch1').style.backgroundImage='url(/static/img/cv1_left_controller_ready.png)'
-				};
-				if (result.Data[1]['rtouch'] === true){
-					document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controlle_caped.png)'
-				};
-				if (result.Data[1]['rtouch'] === false){
-					document.getElementById('RTouch1').style.backgroundImage='url(/static/img/cv1_right_controller_ready.png)'
-				};
-				if (result.Data[2]['headset'] === true){
-					document.getElementById('Headset2').style.backgroundImage='url(/static/img/cv1_headset_caped.png)'
-				};
-				if (result.Data[2]['headset'] === false){
-					document.getElementById('Headset2').style.backgroundImage='url(/static/img/cv1_headset_ready.png)'
-				};
-				if (result.Data[2]['ltouch'] === true){
-					document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_caped.png)'
-				};
-				if (result.Data[2]['ltouch'] === false){
-					document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_ready.png)'
-				};
-				if (result.Data[2]['rtouch'] === true){
-					document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controlle_caped.png)'
-				};
-				if (result.Data[2]['rtouch'] === false){
-					document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controller_ready.png)'
+				
+				if (result.Data[sensor2]['connectionState'] === connected) {
+					document.getElementById('Sensor2').style.backgroundImage='url(/static/img/cv1_camera_ready_2.png)'
+					if (result.Data[sensor2]['headset'] === true) {
+						document.getElementById('Headset2').style.backgroundImage='url(/static/img/cv1_headset_caped.png)'
+					} else {
+						document.getElementById('Headset2').style.backgroundImage='url(/static/img/cv1_headset_ready.png)'
+					};
+					if (result.Data[ltouch]['connectionState'] === connected) {
+						if (result.Data[ltouch]['batteryState'] > 50) {
+							if (result.Data[sensor2]['ltouch'] === true){
+								document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_caped.png)'
+							} else {
+								document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_ready.png)'
+							};
+						} else {
+							if (result.Data[sensor2]['ltouch'] === true){
+								document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_capped_low.png)'
+							} else {
+								document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_ready_low.png)'
+							};
+						};
+					} else {
+						document.getElementById('LTouch2').style.backgroundImage='url(/static/img/cv1_left_controller_off.png)'
+					};
+					if (result.Data[rtouch]['connectionState'] === connected) {
+						if (result.Data[rtouch]['batteryState'] > 50) {
+							if (result.Data[sensor2]['rtouch'] === true){
+								document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controller_caped.png)'
+							} else {
+								document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controller_ready.png)'
+							};
+						} else {
+							if (result.Data[sensor2]['rtouch'] === true){
+								document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controller_capped_low.png)'
+							} else {
+								document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controller_ready_low.png)'
+							};
+						};
+					} else {
+						document.getElementById('RTouch2').style.backgroundImage='url(/static/img/cv1_right_controller_off.png)'
+					};
+				} else {
+					document.getElementById('Sensor2').style.backgroundImage='url(/static/img/cv1_camera_2.png)'
 				};
 			});
 		});

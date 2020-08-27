@@ -17,7 +17,7 @@
 	margin-left: 15px;
 	margin-top: 15px;
 	position: absolute;
-	background-image: url(/static/img/cv1_camera_ready_1.png);
+	background-image: url(/static/img/cv1_camera_1.png);
 	background-repeat: no-repeat;
 }
 
@@ -27,7 +27,7 @@
 	margin-left: 66px;
 	margin-top: 15px;
 	position: absolute;
-	background-image: url(/static/img/cv1_left_controller_ready.png);
+	background-image: url(/static/img/cv1_left_controller_off.png);
 	background-repeat: no-repeat;
 }
 
@@ -58,7 +58,7 @@
 	margin-left: 172px;
 	margin-top: 15px;
 	position: absolute;
-	background-image: url(/static/img/cv1_right_controller_ready.png);
+	background-image: url(/static/img/cv1_right_controller_off.png);
 	background-repeat: no-repeat;
 }
 
@@ -68,7 +68,7 @@
 	margin-left: 15px;
 	margin-top: 70px;
 	position: absolute;
-	background-image: url(/static/img/cv1_camera_ready_2.png);
+	background-image: url(/static/img/cv1_camera_2.png);
 	background-repeat: no-repeat;
 }
 
@@ -78,7 +78,7 @@
 	margin-left: 66px;
 	margin-top: 70px;
 	position: absolute;
-	background-image: url(/static/img/cv1_left_controller_ready.png);
+	background-image: url(/static/img/cv1_left_controller_off.png);
 	background-repeat: no-repeat;
 }
 
@@ -98,6 +98,6 @@
 	margin-left: 172px;
 	margin-top: 70px;
 	position: absolute;
-	background-image: url(/static/img/cv1_right_controller_ready.png);
+	background-image: url(/static/img/cv1_right_controller_off.png);
 	background-repeat: no-repeat;
 }
